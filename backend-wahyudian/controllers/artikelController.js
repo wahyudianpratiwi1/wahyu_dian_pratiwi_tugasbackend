@@ -20,7 +20,7 @@ ArticleController.get('/', async (req, res, next) => {
  * @param {number} id_article
  */
 
-ArticleController.get('/detail', async (req, res, next) => {
+ArticleController.get('/detail',userSession, async (req, res, next) => {
     const detail = await m$article.detailArticle(req.query.id);
     response.sendResponse(res, detail);
 });
@@ -32,7 +32,7 @@ ArticleController.get('/detail', async (req, res, next) => {
  * @param {string} description
  */
 
-ArticleController.post('/', async (req, res, next) => {
+ArticleController.post('/',userSession, async (req, res, next) => {
     // req body, req params, req query
     const add = await m$article.addArticle(req.body);
     response.sendResponse(res, add);
@@ -45,7 +45,7 @@ ArticleController.post('/', async (req, res, next) => {
  * @param {number} id_artikel
  */
 
-ArticleController.put('/', async (req, res, next) => {
+ArticleController.put('/',userSession, async (req, res, next) => {
     const edit = await m$article.editArticle(req.body);
     response.sendResponse(res, edit);
 });
@@ -55,7 +55,7 @@ ArticleController.put('/', async (req, res, next) => {
  * @param {number} id_article
  */
 
-ArticleController.delete('/:id', async (req, res, next) => {
+ArticleController.delete('/:id',userSession, async (req, res, next) => {
     const del = await m$article.deleteArticle(req.params.id);
     response.sendResponse(res, del);
 });
