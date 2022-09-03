@@ -18,7 +18,7 @@ app.get('/', async(req, res, next)=>{
 routes(app)
 
 //Error handler
-// app.use(response.errorHandler())
+app.use(response.errorHandler)
 app.listen(port, ()=>{
     console.log(`Server is listening on https://localhost${port}`)
 })
