@@ -22,7 +22,7 @@ class _auth{
         }
         
         const checkUsername = await m$user.getUserByUsername(data.username);
-        if (!checkUsername) {
+        if (!checkUsername.status) {
             return {
                 status: false,
                 code: 404,

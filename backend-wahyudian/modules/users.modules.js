@@ -166,7 +166,6 @@ class _user{
             }
         }
     }
-
     editUser = async (id, body) => {
         try {
             const schema = joi.object({

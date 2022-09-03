@@ -3,7 +3,7 @@ const AuthController = require('./controllers/authController')
 const CommentController = require('./controllers/comment.controller')
 const usersController = require('./controllers/usersController')
 const _routes=[
-    ['/auth',AuthController],
+    ['/',AuthController],
     ['/artikel',artikelController],
     ['/users',usersController],
     ['/komentar', CommentController]

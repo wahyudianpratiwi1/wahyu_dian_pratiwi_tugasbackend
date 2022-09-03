@@ -35,7 +35,7 @@ class _article{
                 }
             }
 
-            const detailArticle = await mysql.query('SELECT id_artikel, id_user, title, content, created_at, updated_at FROM d_article WHERE id_artikel = ?', [id]);
+            const detailArticle = await mysql.query('SELECT id_artikel, id_user, title, description, created_at, updated_at FROM u_artikel WHERE id_artikel = ?', [id]);
 
             if (detailArticle.length < 0) {
                 return {
@@ -101,6 +101,7 @@ class _article{
                 id_artikel: joi.number().required(),
                 title: joi.string().required(),
                 description: joi.string().required(),
+                id_user : joi.number().required()
             });
             const validate = schema.validate(data);
             if (validate.error) {

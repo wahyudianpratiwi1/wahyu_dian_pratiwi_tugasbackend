@@ -1,18 +1,21 @@
-class _response{
-    sendResponse =(res, data)=>{
+class _response {
+    sendResponse(res, data) {
         try{
-            if(data.code){
-                res.status(data.code)
+            if(data.status){
+                // res.status(data.code)
+                res.status(200)
+
                 delete data.code
+
                 res.send(data)
                 return true
             }
 
-            res.status(data && data.status ? 200 :500)
+            res.status(!data && data.status ? 200 : 500)
             res.send(data)
             return true
-        } catch(error){
-            console.log('sendRsponse response helper Error: ', error)
+        }catch (error){
+            console.error('sendResponse response helper Error: ', error);
 
             res.status(400).send({
                 status: false,
@@ -20,23 +23,22 @@ class _response{
             })
             return false
         }
-        
     }
 
-    errorHandler = (err, req, res, next)=>{
-        if (err.code === 'UnatorizedError'){
-            //error jwt
-            res.status(401).send({
+    errorHandler(err, req, res, next) {
+        if (err.name === 'UnauthorizedError') {
+            // Error jwt
+            return res.status(401).send({
                 status: false,
-                error : 'Invalid Token'
-            })
+                error: 'Invalid Token'
+            });
         }
 
-        //default error handling
+        // Default error handling
         res.status(500).send({
             status: false,
             error: err.message
-        })
+        });
     }
 }
 
